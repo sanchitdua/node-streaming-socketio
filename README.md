@@ -24,6 +24,7 @@ Setup a new Remote Access to get your OAuth tokens. If you are unfamiliar with s
 
 Create a new PushTopic from the Developer Console in your org with the follow. This will setup the endpoint for faye to listen to:
 
+```js
 PushTopic pt = new PushTopic();  
 pt.apiversion = 24.0;  
 pt.name = 'AllAccounts';
@@ -31,6 +32,7 @@ pt.description = 'All new account records';
 pt.query = 'SELECT Id, Name FROM Account';  
 insert pt;  
 System.debug('Created new PushTopic: '+ pt.Id);
+```
 
 You can also set up PushTopics using the [Workbench](https://workbench.developerforce.com).
 
