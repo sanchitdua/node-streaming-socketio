@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<title> Node - Streaming - Socket IO </title>
+    <head>
+        <style type="text/css">
+            .solidLine{
+                float:left;
+                width:100%;
+                height:1px;
+                //margin-bottom:25px;
+                background:#ccc;
+            }
+            body:before{
+                content: "";
+                position: fixed;
+                top: -10px;
+                left: 0;
+                width: 100%;
+                height: 10px;
+                z-index: 100;
+                -webkit-box-shadow: 0px 0px 10px rgba(48,48,48,0.5);
+                -moz-box-shadow: 0px 0px 10px rgba(48,48,48,0.5);
+                box-shadow: 0px 0px 10px rgba(48,48,48,0.5);
+            }
+            body{
+                background-color:#fff;
+                font-family:'proxima-nova-1','proxima-nova-2', Helvetica, Arial, sans-serif;
+            }
+            .allContent{
+                width:900px;
+                margin:50px auto;
+            }
+            .section{
+                width:100%;
+                float:left;          
+            } 
+            .main{
+                width:100%;
+                border:1px solid #ccc;
+                box-sizing:border-box;
+                border-radius:5px;
+                //padding:0px 20px;
+                overflow:hidden;
+            }
+            <!-- title for section -->
+            .title{
+                width:100%;
+                float:left;
+                font-size:20px;
+                //color:gray;
+                color:black;
+                font-weight:bold;
+                padding:5px 0px;
+                background:whiteSmoke;
+                text-indent:10px;
+            }
+            .thankYouMessage{
+                width:100%;
+                float:left;
+                background:white;
+                padding:25px 20px;
+                box-sizing:border-box;
+            }
+	    .receivedMsg{
+		font-style: italic;
+		font-size: 18px;
+		font-family: cosmic;
+		color: green;
+	    }
+        </style>
+    </head>
+<body>
+<!-- <div id="messages"> Node Streaming Socket IO</div> -->
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+
+
+
+<script src="https://cdn.socket.io/socket.io-1.0.0.js">
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+	var socket = io('http://localhost:3001');
+	// var socket = io('http://node-streaming-socketio.herokuapp.com');
+	// var socket = io('http://astreait.herokuapp.com');
+	socket.on('record-processed', function (data) {
+        var results = JSON.parse(data);
+        console.log(results);
+        $('<div class="receivedMsg">Received Account: '+results['sobject']['Name']+'</div>').prependTo('#messages');
+      });
+</script>
+
+    
+    <div class="allContent">
+        <div class="main">
+            <div class="section">
+                <div class="title" style="font-size: 33px;">Node Streaming Socket IO
+            </div>
+                <div class="solidLine"></div>
+                <!-- Thank you message -->
+                <div class="thankYouMessage" >
+	            Your Streaming messages will appear here:<br/>
+                    <div id="messages">If you have any questions, please contact Sanchit Dua at
+                    <a style="color:blue; font-size:14pt;" href="mailto:sanchitdua.88@gmail.com?subject=A Query Request&body=">sanchitdua.88@gmail.com</a> 
+	            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
